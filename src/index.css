@@ -1,0 +1,184 @@
+/*  Paleta de marca 
+  Primario: #4E56C0
+  Secundario: #9B5DE0
+  Tercario/acentos: #D78FEE, #FDCFFA
+*/
+
+:root {
+  /* Paleta propia */
+  --brand-primary: #4e56c0;
+  --brand-secondary: #9b5de0;
+  --brand-accent-1: #d78fee;
+  --brand-accent-2: #fdcffa;
+
+  /* Override de Bootstrap (v5.3): */
+  --bs-primary: var(--brand-primary);
+  --bs-secondary: var(--brand-secondary);
+  --bs-link-color: var(--brand-secondary);
+  --bs-link-hover-color: #8646d7; /* un poco más oscuro */
+  --bs-body-bg: #f8f9fd; /* fondo claro con tinte */
+  --bs-body-color: #222;
+
+  /* Opcionales para look & feel */
+  --card-gradient-top: rgba(78, 86, 192, 0.08);
+  --card-gradient-bottom: rgba(157, 93, 224, 0.08);
+}
+
+/*  Layout base  */
+html, body, #root { height: 100%; }
+body {
+  background:
+    radial-gradient(1200px 800px at 20% -10%, rgba(78, 86, 192, 0.20), transparent 60%),
+    radial-gradient(1000px 600px at 100% 0%, rgba(253, 207, 250, 0.25), transparent 60%),
+    var(--bs-body-bg);
+}
+
+/*  Navbar personalizada  */
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* “Slot” del logo: puedes poner /logo.svg o /logo.png más adelante */
+.brand-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  display: inline-block;
+}
+
+/* Opcional: si incluyes una imagen real, usa esta clase: */
+.brand-logo-img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+/* Navbar background con leve transparencia */
+.navbar {
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(78, 86, 192, 0.15);
+}
+
+/*  Hero / encabezado  */
+.hero {
+  background:
+    linear-gradient(180deg, rgba(78, 86, 192, 0.08), rgba(157, 93, 224, 0.05));
+  border-bottom: 1px solid rgba(78, 86, 192, 0.12);
+}
+
+/*  Cards de resultados (vuelos)  */
+.card.flight {
+  border: 1px solid rgba(78, 86, 192, 0.18);
+  background:
+    linear-gradient(180deg, var(--card-gradient-top), var(--card-gradient-bottom)),
+    #fff;
+  box-shadow: 0 8px 26px rgba(78, 86, 192, 0.12);
+  transition: translate .15s ease, box-shadow .2s ease;
+}
+.card.flight:hover {
+  translate: 0 -2px;
+  box-shadow: 0 12px 30px rgba(78, 86, 192, 0.18);
+}
+
+/* Badges / chips con la paleta */
+.badge-brand {
+  background: var(--brand-accent-2);
+  color: #4a2a5a;
+  font-weight: 600;
+}
+
+/* Botones */
+.btn-brand {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--brand-primary);
+  --bs-btn-border-color: var(--brand-primary);
+  --bs-btn-hover-bg: #4249a7;
+  --bs-btn-hover-border-color: #4249a7;
+  --bs-btn-active-bg: #394090;
+  --bs-btn-active-border-color: #394090;
+}
+
+.btn-outline-brand {
+  --bs-btn-color: var(--brand-primary);
+  --bs-btn-border-color: var(--brand-primary);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--brand-primary);
+  --bs-btn-hover-border-color: var(--brand-primary);
+}
+
+/* Botón carrito redondo */
+.cart-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border-radius: 999px;
+  padding: .5rem .75rem;
+  border: 1px solid rgba(78, 86, 192, 0.35);
+  background: linear-gradient(180deg, rgba(78, 86, 192, 0.18), rgba(157, 93, 224, 0.18));
+}
+.cart-count {
+  font-weight: 700;
+  background: var(--brand-accent-2);
+  color: #5b2a6c;
+  padding: 0 .5rem;
+  border-radius: 999px;
+  font-size: .85rem;
+}
+
+/* Footer suave */
+.app-footer {
+  border-top: 1px solid rgba(78, 86, 192, 0.12);
+  color: #555;
+}
+
+/* === PROMOS (tarjetas con imagen) === */
+.promo-card {
+  border: 1px solid rgba(78, 86, 192, 0.18);
+  background: #000;
+  box-shadow: 0 8px 26px rgba(78, 86, 192, 0.12);
+  position: relative;
+  transition: transform .18s ease, box-shadow .2s ease;
+}
+.promo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(78, 86, 192, 0.20);
+}
+
+.promo-img {
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(105%);
+}
+
+.promo-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 14px;
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.55) 100%),
+    radial-gradient(600px 220px at 0% 0%, rgba(157, 93, 224, 0.20), transparent 60%),
+    radial-gradient(400px 220px at 100% 10%, rgba(253, 207, 250, 0.18), transparent 60%);
+  display: flex;
+}
+
+.promo-title {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.45);
+}
+
+.promo-chip {
+  background: var(--brand-accent-2);      /* #FDCFFA */
+  color: #4a2a5a;                          /* contraste */
+  font-weight: 700;
+  border-radius: 999px;
+  padding: .325rem .6rem;
+  border: 1px solid rgba(255,255,255,0.25);
+}
