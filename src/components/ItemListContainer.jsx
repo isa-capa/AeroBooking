@@ -66,30 +66,45 @@ export default function ItemListContainer({ greeting = '¡Bienvenida!' }) {
         </div>
       </section>
 
-      {/* Resultados destacados */}
-      <section className="py-5">
+      {/* Resultados destacados (desde Firestore) */}
+<section className="py-5">
         <div className="container">
           <div className="d-flex align-items-center justify-content-between mb-3">
             <h2 className="h4 mb-0">Resultados destacados</h2>
+            <span className="badge badge-brand">Firestore</span>
           </div>
-          <div className="row g-3">
-            {destacados.map((f, idx) => (
-              <div className="col-12 col-sm-6 col-lg-4" key={idx}>
-                <div className="card flight h-100">
-                  <div className="card-body d-flex flex-column">
-                    <h5 className="card-title">{f.route}</h5>
-                    <p className="card-text text-muted mb-4">
-                      Desde <strong>${f.price.toLocaleString()} MXN</strong> — {f.note}
-                    </p>
-                    <div className="mt-auto d-flex gap-2">
-                      <a href="#" className="btn btn-brand">Ver detalles</a>
-                      <button className="btn btn-outline-brand">Agregar</button>
+
+          {loading ? (
+            <p className="text-muted">Cargando vuelos...</p>
+          ) : (
+            <div className="row g-3">
+              {destacados.map((f) => (
+                <div className="col-12 col-sm-6 col-lg-4" key={f.id}>
+                  <div className="card flight h-100">
+                    <div className="card-body d-flex flex-column">
+                      <h5 className="card-title">
+                        {f.origin} → {f.destination}
+                      </h5>
+                      <p className="card-text text-muted mb-4">
+                        Desde{" "}
+                        <strong>
+                          ${Number(f.price || 0).toLocaleString()} MXN
+                        </strong>{" "}
+                        — {f.stops === 0 ? "Directo" : `${f.stops} escala(s)`}
+                      </p>
+                      <div className="mt-auto d-flex gap-2">
+                        <a href="#" className="btn btn-brand">Ver detalles</a>
+                        <button className="btn btn-outline-brand">Agregar</button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+              {destacados.length === 0 && (
+                <p className="text-muted">No hay vuelos aún en Firestore.</p>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
